@@ -20,25 +20,28 @@ function WeatherApp() {
     const url = `${apiUrl}?q=${location}&appid=${apiKey}&units=metric`;
 
     fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        if (data.cod === 200) {
-          const celsius = data.main.temp;
-          const fahrenheit = (celsius * 9/5) + 32;
-          setWeatherData({
-            name: data.name,
-            temperature: `${Math.round(celsius)}°C / ${Math.round(fahrenheit)}°F`,
-            description: data.weather[0].description,
-          });
-          setError(''); // Clear any previous error
-        } else {
-          setError('City not found. Please try again.');
-        }
-      })
-      .catch(() => {
-        setError('Error fetching weather data. Please try again later.');
-      });
-  };
+    .then(response => response.json())
+    .then(data => {
+      if (data.cod === 200) {
+        const celsius = data.main.temp;
+        const fahrenheit = (celsius * 9/5) + 32;
+        setWeatherData({
+          name: data.name,
+          temperature: `${Math.round(celsius)}°C / ${Math.round(fahrenheit)}°F`,
+          description: data.weather[0].description,
+        });
+        setError(''); // Clear any previous error
+
+        // Save the search to the database
+        saveSearchToDatabase(data.name);
+      } else {
+        setError('City not found. Please try again.');
+      }
+    })
+    .catch(() => {
+      setError('Error fetching weather data. Please try again later.');
+    });
+};
 
   // Reset weather data
   const resetWeather = () => {
@@ -52,6 +55,19 @@ function WeatherApp() {
     if (event.key === 'Enter') {
       fetchWeather();
     }
+  };
+
+  const saveSearchToDatabase = (location) => {
+    fetch('http://localhost:5001/api/search', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ location }),
+    })
+    .then(response => response.json())
+    .then(data => console.log('Search saved:', data))
+    .catch(error => console.error('Error saving search:', error));
   };
 
   return (
