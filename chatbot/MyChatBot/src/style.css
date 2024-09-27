@@ -1,8 +1,8 @@
 body {
     font-family: Helvetica;
     background-color: #d6eae7;
-    background-image: url("./Assets/IMG_0991.jpeg");
-    background-size: 100%; /* Makes the background cover the entire element */
+    background-image: url("./Assets/IMG_2271.jpeg");
+    background-size: 135%; /* Makes the background cover the entire element */
     background-repeat: no-repeat; /* Prevents the background from repeating */
     background-position: center; /* Centers the background image */
     
@@ -13,9 +13,9 @@ body {
     margin: 0 auto;
     text-align: center;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(225, 237, 241, 0.5);
     border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     margin-top: 105px;
 }
 h1 {

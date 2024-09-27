@@ -81,8 +81,8 @@ function WeatherApp() {
         onChange={(e) => setLocation(e.target.value)}
         onKeyDown={handleKeyDown} // Listen for keydown events
       />
-      <button onClick={fetchWeather}>Search</button>
       <button className="resetBtn" onClick={resetWeather}>Reset</button>
+      <button onClick={fetchWeather}>Search</button>
       <p className="errorMessage">{error}</p>
       {weatherData && (
         <div className="weather-info">
