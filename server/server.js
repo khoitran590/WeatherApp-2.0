@@ -12,7 +12,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // MongoDB connection
-const mongoURI = 'mongodb://localhost:27017/weatherSearches'; // Make sure you specify the database name
+const mongoURI = 'mongodb://localhost:27017/weatherSearches'; 
 mongoose.connect(mongoURI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
