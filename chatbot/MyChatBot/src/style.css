@@ -42,6 +42,9 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
+button:hover {
+    background-color: #689ed7;
+}
 .errorMessage{
     font-size: 20px;
     color: #ef2929;
@@ -63,4 +66,17 @@ button {
 }
 button:hover{
     background-color: #689ed7 ;
+}
+.randomizeBtn {
+    background-color: #0038f3;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.randomizeBtn:hover {
+    background-color: #2d7a00;
 }
