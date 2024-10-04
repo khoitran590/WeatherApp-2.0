@@ -1,4 +1,3 @@
-// WeatherApp.js
 import React, { useState } from 'react';
 import './style.css';
 
@@ -12,13 +11,15 @@ function WeatherApp() {
   const [error, setError] = useState('');
 
   // Fetch weather data
-  const fetchWeather = (city = location) => {
-    if (!city) {
+  const fetchWeather = (city) => {
+    const query = city || location;  // Use city if passed, otherwise use location state
+    
+    if (!query) {
       setError('Please enter a city name');
       return;
     }
 
-    const url = `${apiUrl}?q=${city}&appid=${apiKey}&units=metric`;
+    const url = `${apiUrl}?q=${query}&appid=${apiKey}&units=metric`;
 
     fetch(url)
       .then(response => response.json())
@@ -89,7 +90,7 @@ function WeatherApp() {
         onKeyDown={handleKeyDown} // Listen for keydown events
       />
       <button className="resetBtn" onClick={resetWeather}>Reset</button>
-      <button onClick={fetchWeather}>Search</button>
+      <button onClick={() => fetchWeather()}>Search</button>
       <button className="randomizeBtn" onClick={fetchRandomWeather}>Randomize</button>
       <p className="errorMessage">{error}</p>
       {weatherData && (
